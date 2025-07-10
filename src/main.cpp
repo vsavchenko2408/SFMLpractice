@@ -1,11 +1,6 @@
-#include <SFML/Graphics.hpp>
+#include "SFML/Graphics.hpp"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode({320, 240}), "SFML works!");
-    while (window.isOpen())
-    {
-        // window.clear();
-        window.display();
-    }
+    sf::RenderWindow window(sf::VideoMode({320, 240}), "Main window");
 }
