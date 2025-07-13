@@ -2,16 +2,22 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode({200, 600}), "Main window");
-    sf::CircleShape red(90, 90);
-    red.move(sf::Vector2f(10, 10));
-    red.setFillColor(sf::Color::Red);
-    sf::CircleShape yellow(90, 90);
-    yellow.move(sf::Vector2f(10, 210));
-    yellow.setFillColor(sf::Color::Yellow);
-    sf::CircleShape green(90, 90);
-    green.move(sf::Vector2f(10, 410));
-    green.setFillColor(sf::Color::Green);
+    sf::RenderWindow window(sf::VideoMode({800, 600}), "Main window");
+    sf::RectangleShape wall(sf::Vector2f(600, 300));
+    wall.setPosition(sf::Vector2f(100, 250));
+    wall.setFillColor(sf::Color(80, 40, 50));
+    //////////
+    sf::RectangleShape door(sf::Vector2f(100, 200));
+    door.setPosition(sf::Vector2f(150, 350));
+    door.setFillColor(sf::Color::Black);
+    //////////
+    sf::ConvexShape roof;
+    roof.setFillColor(sf::Color(120, 50, 50));
+    roof.setPointCount(4);
+    roof.setPoint(0, {250, 150});
+    roof.setPoint(1, {550, 150});
+    roof.setPoint(2, {650, 450});
+    roof.setPoint(3, {150, 450});
     while (window.isOpen())
     {
         while (const std::optional event = window.pollEvent())
@@ -19,18 +25,10 @@ int main()
             if (event->is<sf::Event::Closed>())
                 window.close();
         }
-
-        window.clear(sf::Color::Black);
-        window.draw(red);
+        window.clear(sf::Color::White);
+        window.draw(wall);
+        window.draw(door);
+        window.draw(roof);
         window.display();
-        sf::sleep(std::chrono::milliseconds(1000));
-        window.clear(sf::Color::Black);
-        window.draw(yellow);
-        window.display();
-        sf::sleep(std::chrono::milliseconds(1000));
-        window.clear(sf::Color::Black);
-        window.draw(green);
-        window.display();
-        sf::sleep(std::chrono::milliseconds(1000));
     }
 }
